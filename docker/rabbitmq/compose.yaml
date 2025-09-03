@@ -1,0 +1,28 @@
+services:
+  rabbitmq:
+    # build: .                          # or: image: rabbitmq:3.13-management
+    image: rabbitmq:3-management
+    container_name: blackbird-rabbitmq
+    ports:
+      - "5672:5672"                   # AMQP
+      - "15672:15672"                 # Management UI
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+      # RABBITMQ_DEFAULT_VHOST: ${RABBITMQ_DEFAULT_VHOST:-/}
+      # If you provided definitions.json above, uncomment:
+      # RABBITMQ_MANAGEMENT_LOAD_DEFINITIONS: /etc/rabbitmq/definitions.json
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq   # persistent data
+      # Optional config mounts:
+      # - ./rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf:ro
+      # - ./definitions.json:/etc/rabbitmq/definitions.json:ro
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+volumes:
+  rabbitmq_data:
