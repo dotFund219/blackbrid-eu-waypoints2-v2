@@ -11,27 +11,28 @@ import (
 	"syscall"
 	"time"
 
+	"github.com/google/uuid"
 	"github.com/streadway/amqp"
 )
 
 type ScanInfo struct {
 	// Required Fields
-	ScanID         string   `json:"scanID"`
-	CustomerAPIKey string   `json:"customerAPIKey"`
-	CustomerID     string   `json:"customerID"`
-	Target         string   `json:"target"`
-	TemplateIDs    []string `json:"templateIDs"`
+	ScanID         uuid.UUID `json:"scanID"`
+	CustomerAPIKey string    `json:"customerAPIKey"`
+	CustomerID     uuid.UUID `json:"customerID"`
+	Target         string    `json:"target"`
+	TemplateIDs    []string  `json:"templateIDs"`
 
 	// Optional Fields
-	TargetID                 string    `json:"targetID"`
-	VulnerabilityScanID      string    `json:"vulnerabilityScanID"`
-	SubDomainxScanID         string    `json:"subDomainxScanID"`
-	SpiderxScanID            string    `json:"spiderxScanID"`
-	ChunkID                  string    `json:"chunkID"`
+	TargetID                 uuid.UUID `json:"targetID"`
+	VulnerabilityScanID      uuid.UUID `json:"vulnerabilityScanID"`
+	SubDomainxScanID         uuid.UUID `json:"subDomainxScanID"`
+	SpiderxScanID            uuid.UUID `json:"spiderxScanID"`
+	ChunkID                  uint64    `json:"chunkID"`
 	TemplateTags             string    `json:"templateTags"`
 	Headers                  []string  `json:"headers"`
-	Delay                    time.Time `json:"delay"`
-	Timeout                  time.Time `json:"timout"`
+	Delay                    uint64    `json:"delay"`
+	Timeout                  uint64    `json:"timout"`
 	VpnConnectionURI         string    `json:"vpnConnectionURI"`
 	CustomerNotificationsKey string    `json:"customerNotificationsKey"`
 	CustomerCanaryToken      string    `json:"customerCanaryToken"`

@@ -4,6 +4,7 @@ go 1.24.4
 
 require (
 	github.com/go-yaml/yaml v2.1.0+incompatible
+	github.com/google/uuid v1.6.0
 	github.com/sirupsen/logrus v1.9.3
 	github.com/streadway/amqp v1.1.0
 )

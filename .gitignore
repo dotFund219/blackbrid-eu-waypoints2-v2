@@ -30,3 +30,10 @@ go.work.sum
 # Editor/IDE
 # .idea/
 # .vscode/
+
+# log file
+*.log
+
+# config files
+/waypoints2-v2/cmd/api-daemon/config
+/waypoints2-v2/cmd/v2-service/config

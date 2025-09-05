@@ -9,9 +9,11 @@ import (
 	"syscall"
 )
 
-func main() {
+func init() {
 	logger.Log.Out = os.Stdout
+}
 
+func main() {
 	// Load config
 	config.LoadConfig()
 
@@ -56,5 +58,4 @@ func main() {
 			}
 		}
 	}
-
 }
