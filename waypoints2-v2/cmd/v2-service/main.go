@@ -20,17 +20,17 @@ func main() {
 	// Initialize RabbitMQ instance
 	rmq, err := rabbitmq.NewRabbitMQ(&config.AppConfig.RabbitMQ)
 	if err != nil {
-		logger.Log.Errorf("Failed to initialize RabbitMQ: %v", err)
+		logger.Log.Errorf("🔴 Failed to initialize RabbitMQ: %v", err)
 	}
 	defer rmq.Close()
 
 	logger.Log.Info("🟦 Consumer Starting...")
 	err = rmq.StartConsumer()
 	if err != nil {
-		logger.Log.Errorf("Failed to consume message: %v", err)
+		logger.Log.Errorf("🔴 Failed to consume message: %v", err)
 	}
 
-	logger.Log.Info("✅ Service started...")
+	logger.Log.Info("✅ Blackbirds scanner microservice started...")
 
 	sigChan := make(chan os.Signal, 1)
 	signal.Notify(sigChan, os.Interrupt, syscall.SIGTERM)

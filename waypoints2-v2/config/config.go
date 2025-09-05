@@ -1,6 +1,7 @@
 package config
 
 import (
+	"blackbird-eu/waypoints2-v2/internal/db"
 	"blackbird-eu/waypoints2-v2/internal/rabbitmq"
 	"blackbird-eu/waypoints2-v2/pkg/logger"
 	"os"
@@ -9,8 +10,9 @@ import (
 )
 
 type Config struct {
-	RabbitMQ   rabbitmq.Config `yaml:"rabbitmq"`
-	ServerInfo struct {
+	RabbitMQ     rabbitmq.Config `yaml:"rabbitmq"`
+	DatabaseInfo db.Config       `yaml:"database"`
+	ServerInfo   struct {
 		Port string `yaml:"port"`
 	} `yaml:"http"`
 	Scanner struct {
